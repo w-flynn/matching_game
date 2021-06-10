@@ -45,3 +45,19 @@ background-color: cyan;
 .orange{
 background-color: orange; 
   }
+
+.button {
+Background-color:blue;
+Color:white;
+Padding: 15px 32px;
+Text-align: center;
+Text-decoration: none;
+Display: inline-block;
+Font-size 16 px;
+Border-radius: 12px;
+}
+
+.button:hover {
+Background-color: white;
+Color:black;
+}
