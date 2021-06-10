@@ -47,4 +47,17 @@ background-color: cyan;
 background-color: orange; 
   }
 
-    
+.button {
+   background-color: blue;
+   color: white;
+   text-align: center;
+   display: inline-block;
+   font-size: 16px;
+   padding: 15 px 32 px;
+   border-radius: 12 px;
+}
+
+.button:hover {
+   background-color: white;
+   color: black;
+}
