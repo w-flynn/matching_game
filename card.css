@@ -1,15 +1,14 @@
 .row{
-   text-align: center;
-    }
-    
+    text-align: center;
+}
 .card{
     display: inline-block;
-    width: 100px;
-    height: 100px;
-    background-color: rgb(238, 222, 222);
+    width: 150px;
+    height: 150px;
+    background-color: #eee;
     cursor: pointer;
-    }
-    
+}
+
 .card:hover {
     border: 1px black;
     }
@@ -46,18 +45,3 @@ background-color: cyan;
 .orange{
 background-color: orange; 
   }
-
-.button {
-   background-color: blue;
-   color: white;
-   text-align: center;
-   display: inline-block;
-   font-size: 16px;
-   padding: 15 px 32 px;
-   border-radius: 12 px;
-}
-
-.button:hover {
-   background-color: white;
-   color: black;
-}
