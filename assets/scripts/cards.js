@@ -1,27 +1,26 @@
 function main () {
     //Setting colors
-    let colors = []
-    let back = ''
+    let colors = ['green','blue','pink','yellow','red','blueviolet','cyan','orange']
+    let back = 'rgb(238, 222, 222)'
 
     //Card objects
 
-    function Card(id,color) {
-        this.id = id,
-        this.loc = null,
+    function Card(color) {
+        // this.id = id,
         this.flipped = false,
-        this.color = color
+        this.color = color,
+        element = null
     }
 
     Card.prototype = {
         flip: function() {
-            let card = document.querySelector('selector'); 
             if (this.flipped === true) {
                 this.flipped = false;
-                card.style.backgroundColor = back;
+                this.element.style.backgroundColor = back;
             }
             else {
                 this.flipped = true;
-                card.style.backgroundColor = this.color;
+                this.element.style.backgroundColor = this.color;
             }
         }
     }
@@ -29,9 +28,9 @@ function main () {
     //Initialization of cards
 
     let deck = []
-    for (let i=0; i < images.length; i++) {
-        deck.push(new Card(i,colors[i]))
-        deck.push(new Card(i,colors[i]))
+    for (let i=0; i < colors.length; i++) {
+        deck.push(new Card(colors[i]))
+        deck.push(new Card(colors[i]))
     }
 
     //Shuffle function
@@ -40,26 +39,23 @@ function main () {
         var i = array.length,
             j = 0,
             temp;
-
         while (i--) {
-
             j = Math.floor(Math.random() * (i+1));
-
             // swap randomly chosen element with current element
             temp = array[i];
             array[i] = array[j];
             array[j] = temp;
-
         }
 
         return array;
     }
 
     //Setting location of cards
-    function deal {
+    function deal() {
         let ranNums = shuffle([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]);
         for (let i=0; i < deck.length; i++) {
-            deck[i].loc = ranNums[i]
+            element = document.querySelector('.card#' + CSS.escape(ranNums[i])); 
+            deck[i].element = element
         }
     }
     //Call deal function
@@ -72,40 +68,42 @@ function main () {
     //Select all cards
     let cards = document.querySelectorAll('.card')
 
-    //When player wins the game
-    function won() {
-
-    }
-
     //User Selects Cards
-    let card1, card2;
+    let ind1, ind2;
+    let first = true;
     function clickLogic() {
-        if !(card1) {
-            card1 = this.id;
-            this.flip();
-            card1.removeEventListener('click',clickLogic);
+        let loc = this.id;
+        let ind = deck.findIndex(obj => {
+            return obj.element === this;
+          })
+        if (first) {
+            ind1 = ind;
+            deck[ind1].flip();
+            deck[ind1].element.removeEventListener('click',clickLogic);
+            first = false;
         }
         else {
-            card2 = this.id;
-            this.flip();
-            if (card1 === card2) {
-                card2.removeEventListener('click',clickLogic);
-                match += 1;
-                if (match === 8) {
-                    won(); 
+            ind2 = ind;
+            deck[ind2].flip();
+            if (deck[ind1].color === deck[ind2].color) {
+                deck[ind2].element.removeEventListener('click',clickLogic);
+                matches += 1;
+                if (matches === 8) {
+                    if(alert('You Win!')){}
+                else    window.location.reload();
                 }
             }
             else {
-                card1.addEventListener('click',clickLogic);
+                deck[ind1].element.addEventListener('click',clickLogic);
                 setTimeout(() => {      
-                    card1.flip();
-                    card2.flip();
-                }, 1500);
+                    deck[ind1].flip();
+                    deck[ind2].flip();
+                }, 1000);
             }
-            card1 = null;
+            first=true;
         }
     }
-    cards.forEach(card => addEventListener('click', clickLogic))
+    cards.forEach(card => card.addEventListener('click', clickLogic))
 
 }
 
