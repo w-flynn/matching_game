@@ -1,0 +1,16 @@
+.row{
+    Text-align: center;
+    }
+    
+.card{
+    Display: inline-block;
+    Width: 100px;
+    Height: 100px;
+    Background-color: rgb(238, 222, 222);
+    Cursor: pointer;
+    }
+    
+.card:hover {
+    Border: 1px black
+    }
+    
