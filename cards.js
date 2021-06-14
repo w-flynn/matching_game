@@ -15,8 +15,9 @@ function main() {
   //Card objects
 
   function Card(color) {
-    // this.id = id,
-    (this.flipped = false), (this.color = color), (element = null);
+    this.flipped = false;
+    this.color = color; 
+    this.element = null;
   }
 
   Card.prototype = {
@@ -73,7 +74,7 @@ function main() {
 
   //Track number of matches found
   let matches = 0;
-  let locked = false
+  let locked = false;
   //Select all cards
   let cards = document.querySelectorAll(".card");
 
@@ -84,7 +85,6 @@ function main() {
     if (locked) {
       return;
     }
-    let loc = this.id;
     let ind = deck.findIndex((obj) => {
       return obj.element === this;
     });
