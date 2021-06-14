@@ -73,6 +73,7 @@ function main() {
 
   //Track number of matches found
   let matches = 0;
+  let locked = false
   //Select all cards
   let cards = document.querySelectorAll(".card");
 
@@ -80,6 +81,9 @@ function main() {
   let ind1, ind2;
   let first = true;
   function clickLogic() {
+    if (locked) {
+      return;
+    }
     let loc = this.id;
     let ind = deck.findIndex((obj) => {
       return obj.element === this;
@@ -90,11 +94,13 @@ function main() {
       deck[ind1].element.removeEventListener("click", clickLogic);
       first = false;
     } else {
+      locked = true;
       ind2 = ind;
       deck[ind2].flip();
       if (deck[ind1].color === deck[ind2].color) {
         deck[ind2].element.removeEventListener("click", clickLogic);
         matches += 1;
+        locked = false;
         if (matches === 8) {
           if (setTimeout(() => alert("You Win!"), 1500)) {
           } else window.location.reload();
@@ -104,6 +110,7 @@ function main() {
         setTimeout(() => {
           deck[ind1].flip();
           deck[ind2].flip();
+          locked = false;
         }, 1000);
       }
       first = true;
